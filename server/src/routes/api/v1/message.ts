@@ -1,254 +1,289 @@
-import { USERS_LIMIT } from "@/constants/constants";
+import { MESSAGES_LIMIT } from "@/constants/constants";
 import { makeResponseJson } from "@/helpers/utils";
 import { ErrorHandler, isAuthenticated, validateObjectID } from "@/middlewares";
-import { Follow, NewsFeed, Notification, Post, User } from "@/schemas";
-import { FollowService } from "@/services";
+import { Chat, Message, User } from "@/schemas";
 import { NextFunction, Request, Response, Router } from "express";
 import { Types } from "mongoose";
 
 const router = Router({ mergeParams: true });
 
 router.post(
-  "/v1/follow/:follow_id",
+  "/v1/message/:user_id",
   isAuthenticated,
-  validateObjectID("follow_id"),
+  validateObjectID("user_id"),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { follow_id } = req.params;
+      const { user_id } = req.params;
+      const { text } = req.body;
+      const user = await User.findById(user_id);
+      if (!user) return next(new ErrorHandler(400, "Receiver not found."));
+      if (!text) return next(new ErrorHandler(400, "Text is required."));
 
-      const user = User.findById(follow_id);
-      // CHECK IF FOLLOWING USER EXIST
-      if (!user)
+      if (req.user._id.toString() === user_id) {
         return next(
-          new ErrorHandler(
-            400,
-            "The person you're trying to follow doesn't exist."
-          )
+          new ErrorHandler(400, "You can\t send message to yourself.")
         );
-      // CHECK IF FOLLOWING IS NOT YOURSELF
-      if (follow_id === req.user._id.toString())
-        return next(new ErrorHandler(400, "You can't follow yourself."));
-
-      //  CHECK IF ALREADY FOLLOWING
-      const isFollowing = await Follow.findOne({
-        user: req.user._id,
-        target: Types.ObjectId(follow_id),
-      });
-
-      if (isFollowing) {
-        return next(new ErrorHandler(400, "Already following."));
-      } else {
-        const newFollower = new Follow({
-          user: req.user._id,
-          target: Types.ObjectId(follow_id),
-        });
-
-        await newFollower.save();
       }
 
-      // TODO ---- FILTER OUT DUPLICATES
-      const io = req.app.get("io");
-      const notification = new Notification({
-        type: "follow",
-        initiator: req.user._id,
-        target: Types.ObjectId(follow_id),
-        link: `/user/${req.user.username}`,
+      const message = new Message({
+        from: req.user._id,
+        to: Types.ObjectId(user_id),
+        text,
+        seen: false,
         createdAt: Date.now(),
       });
 
-      notification.save().then(async (doc) => {
-        await doc
-          .populate({
-            path: "target initiator",
-            select: "fullname profilePicture username",
-          })
-          .execPopulate();
-
-        io.to(follow_id).emit("newNotification", {
-          notification: doc,
-          count: 1,
-        });
-      });
-
-      // SUBSCRIBE TO USER'S FEED
-      const subscribeToUserFeed = await Post.find({
-        _author_id: Types.ObjectId(follow_id),
-      })
-        .sort({ createdAt: -1 })
-        .limit(10);
-
-      if (subscribeToUserFeed.length !== 0) {
-        const feeds = subscribeToUserFeed.map((post) => {
-          return {
-            follower: req.user._id,
-            post: post._id,
-            post_owner: post._author_id,
-            createdAt: post.createdAt,
-          };
-        });
-
-        await NewsFeed.insertMany(feeds);
-      }
-      res.status(200).send(makeResponseJson({ state: true }));
-    } catch (e) {
-      console.log("CANT FOLLOW USER, ", e);
-      next(e);
-    }
-  }
-);
-
-router.post(
-  "/v1/unfollow/:follow_id",
-  isAuthenticated,
-  validateObjectID("follow_id"),
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const { follow_id } = req.params;
-
-      const user = User.findById(follow_id);
-      if (!user)
-        return next(
-          new ErrorHandler(
-            400,
-            "The person you're trying to unfollow doesn't exist."
-          )
-        );
-      if (follow_id === req.user._id.toString())
-        return next(new ErrorHandler(400));
-
-      await Follow.deleteOne({
-        target: Types.ObjectId(follow_id),
-        user: req.user._id,
-      });
-
-      // UNSUBSCRIBE TO PERSON'S FEED
-      await NewsFeed.deleteMany({
-        post_owner: Types.ObjectId(follow_id),
-        follower: req.user._id,
-      });
-
-      res.status(200).send(makeResponseJson({ state: false }));
-    } catch (e) {
-      console.log("CANT FOLLOW USER, ", e);
-      next(e);
-    }
-  }
-);
-
-router.get(
-  "/v1/:username/following",
-  isAuthenticated,
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const { username } = req.params;
-      const offset = parseInt(req.query.offset) || 0;
-      const limit = USERS_LIMIT;
-      const skip = offset * limit;
-
-      const user = await User.findOne({ username });
-      if (!user) return next(new ErrorHandler(404, "User not found."));
-
-      const following = await FollowService.getFollow(
-        { user: user._id },
-        "following",
-        req.user,
-        skip,
-        limit
-      );
-
-      if (following.length === 0) {
-        return next(
-          new ErrorHandler(404, `${username} isn't following anyone.`)
-        );
-      }
-
-      res.status(200).send(makeResponseJson(following));
-    } catch (e) {
-      next(e);
-    }
-  }
-);
-
-router.get(
-  "/v1/:username/followers",
-  isAuthenticated,
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const { username } = req.params;
-      const offset = parseInt(req.query.offset) || 0;
-      const limit = USERS_LIMIT;
-      const skip = offset * limit;
-
-      const user = await User.findOne({ username });
-      if (!user) return next(new ErrorHandler(404, "User not found."));
-
-      const followers = await FollowService.getFollow(
-        { target: user._id },
-        "followers",
-        req.user,
-        skip,
-        limit
-      );
-
-      if (followers.length === 0) {
-        return next(new ErrorHandler(404, `${username} has no followers.`));
-      }
-
-      res.status(200).send(makeResponseJson(followers));
-    } catch (e) {
-      console.log("CANT GET FOLLOWERS", e);
-      next(e);
-    }
-  }
-);
-
-router.get(
-  "/v1/people/suggested",
-  isAuthenticated,
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const offset = parseInt(req.query.offset as string) || 0;
-      const skipParam = parseInt(req.query.skip as string) || 0;
-
-      const limit = parseInt(req.query.limit as string) || USERS_LIMIT;
-      const skip = skipParam || offset * limit;
-
-      const myFollowingDoc = await Follow.find({ user: req.user._id });
-      const myFollowing = myFollowingDoc.map((user) => user.target);
-
-      const people = await User.aggregate([
+      await Chat.findOneAndUpdate(
         {
-          $match: {
-            _id: {
-              $nin: [...myFollowing, req.user._id],
-            },
+          participants: {
+            $all: [
+              { $elemMatch: { $eq: req.user._id } },
+              { $elemMatch: { $eq: Types.ObjectId(user_id) } },
+            ],
           },
         },
-        ...(limit < 10 ? [{ $sample: { size: limit } }] : []),
+        {
+          $set: {
+            lastmessage: message._id,
+            participants: [req.user._id, Types.ObjectId(user_id)],
+          },
+        },
+        { upsert: true }
+      );
+
+      await message.save();
+      await message
+        .populate({
+          path: "from to",
+          select: "username profilePicture fullname",
+        })
+        .execPopulate();
+
+      // Notify user
+      const io = req.app.get("io");
+
+      [user_id, req.user._id.toString()].forEach((user) => {
+        io.to(user).emit("newMessage", {
+          ...message.toObject(),
+          isOwnMessage: user === message.from._id.toString() ? true : false,
+        });
+      });
+
+      res.status(200).send(makeResponseJson(message));
+    } catch (e) {
+      console.log("CANT SEND MESSAGE: ", e);
+      next(e);
+    }
+  }
+);
+
+router.get(
+  "/v1/messages",
+  isAuthenticated,
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      let offset = parseInt(req.query.offset as string) || 0;
+
+      const limit = MESSAGES_LIMIT;
+      const skip = offset * limit;
+
+      const agg = await Chat.aggregate([
+        {
+          $match: {
+            participants: { $in: [req.user._id] },
+          },
+        },
         { $skip: skip },
         { $limit: limit },
         {
-          $addFields: {
-            isFollowing: false,
+          $lookup: {
+            from: "messages",
+            localField: "lastmessage",
+            foreignField: "_id",
+            as: "message",
+          },
+        },
+        {
+          $unwind: "$message",
+        },
+        {
+          $project: {
+            _id: 0,
+            message: 1,
+          },
+        },
+        {
+          $lookup: {
+            from: "users",
+            localField: "message.from",
+            foreignField: "_id",
+            as: "message.from",
+          },
+        },
+        { $unwind: "$message.from" },
+        {
+          $project: {
+            to: "$message.to",
+            text: "$message.text",
+            id: "$message._id",
+            seen: "$message.seen",
+            createdAt: "$message.createdAt",
+            from: {
+              username: "$message.from.username",
+              id: "$message.from._id",
+              profilePicture: "$message.from.profilePicture",
+            },
+          },
+        },
+        {
+          $lookup: {
+            from: "users",
+            localField: "to",
+            foreignField: "_id",
+            as: "message.to",
+          },
+        },
+        { $unwind: "$message.to" },
+        {
+          $project: {
+            id: 1,
+            from: 1,
+            text: 1,
+            seen: 1,
+            createdAt: 1,
+            to: {
+              username: "$message.to.username",
+              id: "$message.to._id",
+              profilePicture: "$message.to.profilePicture",
+            },
+            isOwnMessage: {
+              $cond: [{ $eq: ["$from.id", req.user._id] }, true, false],
+            },
+          },
+        },
+      ]);
+
+      if (agg.length === 0 || typeof agg[0] === "undefined") {
+        return next(new ErrorHandler(404, "You have no messages."));
+      }
+
+      const sorted = agg.sort(
+        (a, b) =>
+          new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf()
+      );
+
+      res.status(200).send(makeResponseJson(sorted));
+    } catch (e) {
+      console.log("CANT GET MESSAGES", e);
+      next(e);
+    }
+  }
+);
+
+router.get(
+  "/v1/messages/unread",
+  isAuthenticated,
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const agg = await Message.aggregate([
+        {
+          $match: {
+            to: req.user._id,
+          },
+        },
+        {
+          $group: {
+            _id: "$from",
+            seenCount: {
+              $push: {
+                $cond: [{ $eq: ["$seen", false] }, "$_id", "$$REMOVE"],
+              },
+            },
           },
         },
         {
           $project: {
             _id: 0,
-            id: "$_id",
-            username: "$username",
-            profilePicture: "$profilePicture",
-            isFollowing: 1,
+            count: {
+              $size: "$seenCount",
+            },
           },
         },
       ]);
 
-      if (people.length === 0)
-        return next(new ErrorHandler(404, "No suggested people."));
+      const totalUnseen = agg.reduce((acc, obj) => acc + obj.count, 0);
 
-      res.status(200).send(makeResponseJson(people));
+      res.status(200).send(makeResponseJson({ count: totalUnseen }));
     } catch (e) {
-      console.log("CANT GET SUGGESTED PEOPLE", e);
+      console.log("CANT GET MESSAGES", e);
+      next(e);
+    }
+  }
+);
+
+router.patch(
+  "/v1/message/read/:from_id",
+  isAuthenticated,
+  validateObjectID("from_id"),
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { from_id } = req.params;
+
+      await Message.updateMany(
+        {
+          from: Types.ObjectId(from_id),
+          to: req.user._id,
+          seen: false,
+        },
+        {
+          $set: { seen: true },
+        }
+      );
+
+      res.status(200).send(makeResponseJson({ state: true }));
+    } catch (e) {
+      console.log("CANT READ MESSAGES");
+      next(e);
+    }
+  }
+);
+
+router.get(
+  "/v1/messages/:target_id",
+  isAuthenticated,
+  validateObjectID("target_id"),
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { target_id } = req.params;
+      const offset = parseInt(req.query.offset as string) || 0;
+      const limit = MESSAGES_LIMIT;
+      const skip = offset * limit;
+
+      const messages = await Message.find({
+        $or: [
+          { from: req.user._id, to: Types.ObjectId(target_id) },
+          { from: Types.ObjectId(target_id), to: req.user._id },
+        ],
+      })
+        .populate("from", "username profilePicture")
+        .sort({ createdAt: -1 })
+        .limit(limit)
+        .skip(skip);
+
+      const mapped = messages.map((msg) => {
+        return {
+          ...msg.toObject(),
+          isOwnMessage: msg.from.id === req.user._id.toString() ? true : false,
+        };
+      });
+
+      if (messages.length === 0) {
+        return next(new ErrorHandler(404, "No messages."));
+      }
+
+      res.status(200).send(makeResponseJson(mapped));
+    } catch (e) {
+      console.log("CANT GET MESSAGES FROM USER", e);
       next(e);
     }
   }
