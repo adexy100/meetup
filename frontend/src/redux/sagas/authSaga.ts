@@ -1,5 +1,5 @@
 import { call, put, select } from "redux-saga/effects";
-import { history } from "~/App";
+import { createBrowserHistory } from "history";
 import {
   CHECK_SESSION,
   LOGIN_START,
@@ -7,8 +7,8 @@ import {
   REGISTER_START,
 } from "~/constants/actionType";
 import { LOGIN } from "~/constants/routes";
-import { checkAuthSession, login, logout, register } from "~/services/api";
-import socket from "~/socket/socket";
+import { checkAuthSession, login, logout, register } from "../../services/api";
+import socket from "../../socket/socket";
 import { IError, IUser } from "~/types/type";
 import {
   loginSuccess,
@@ -19,6 +19,8 @@ import { clearChat } from "../action/chatActions";
 import { setAuthErrorMessage } from "../action/errorActions";
 import { clearNewsFeed } from "../action/feedActions";
 import { isAuthenticating } from "../action/loadingActions";
+
+const history = createBrowserHistory();
 
 interface IAuthSaga {
   type: string;

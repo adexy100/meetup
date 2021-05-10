@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { call, put } from "redux-saga/effects";
 import { CREATE_POST_START, GET_FEED_START } from "~/constants/actionType";
-import { createPost, getNewsFeed } from "~/services/api";
+import { createPost, getNewsFeed } from "../../services/api";
 import { IPost } from "~/types/type";
 import { setNewsFeedErrorMessage } from "../action/errorActions";
 import { createPostSuccess, getNewsFeedSuccess } from "../action/feedActions";
