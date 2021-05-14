@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import { logoutStart } from "../redux/action/authActions";
 import store from "../redux/store/store";
 
-const foodieUrl = process.env.REACT_APP_MEETUP_URL || "http://localhost:9000";
+const foodieUrl = process.env.REACT_APP_MEETUP_URL || "http://localhost:8000";
 const foodieApiVersion = process.env.REACT_APP_MEETUP_API_VERSION || "v1";
 axios.defaults.baseURL = `${foodieUrl}/api/${foodieApiVersion}`;
 axios.defaults.withCredentials = true;

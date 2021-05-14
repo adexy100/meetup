@@ -15,7 +15,7 @@ if (env === "dev") {
 export default {
   server: {
     env,
-    port: process.env.PORT || 9000,
+    port: process.env.PORT || 8000,
   },
   mongodb: {
     uri: process.env.MONGODB_URI,

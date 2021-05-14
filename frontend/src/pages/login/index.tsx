@@ -22,7 +22,7 @@ const Login: React.FC = () => {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const dispatch = useDispatch();
 
-  useDocumentTitle("Login to Foodie");
+  useDocumentTitle("Login to DevMeet");
   useEffect(() => {
     return () => {
       dispatch(setAuthErrorMessage(null));
@@ -99,7 +99,7 @@ const Login: React.FC = () => {
         <div className="w-full laptop:px-14 px-8 text-center laptop:text-left">
           <div>
             <h2 className="mt-6 text-xl laptop:text-2xl font-extrabold text-gray-900">
-              Login to Foodie
+              Login to DevMeet
             </h2>
           </div>
           <form className="mt-8 space-y-6" onSubmit={onSubmit}>
@@ -190,7 +190,7 @@ const Login: React.FC = () => {
           </div>
           {/* --- COPYRIGHT -- */}
           <span className="text-gray-400 text-xs mx-auto text-center block mt-4">
-            &copy;Copyright {new Date().getFullYear()} Foodie
+            &copy;Copyright {new Date().getFullYear()} DevMeet
           </span>
         </div>
       </div>

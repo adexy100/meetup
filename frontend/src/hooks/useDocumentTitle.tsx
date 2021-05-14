@@ -5,7 +5,7 @@ const useDocumentTitle = (title: string) => {
     if (title) {
       document.title = title;
     } else {
-      document.title = "meetup | Social Network for developers";
+      document.title = "DevMeet | Social Network for developers";
     }
   }, [title]);
 };
