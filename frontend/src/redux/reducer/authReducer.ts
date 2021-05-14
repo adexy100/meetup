@@ -3,9 +3,9 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   UPDATE_AUTH_PICTURE,
-} from "~/constants/actionType";
-import { TAuthActionType } from "~/redux/action/authActions";
-import { IUser } from "~/types/type";
+} from "../../constants/actionType";
+import { TAuthActionType } from "../../redux/action/authActions";
+import { IUser } from "../../types/type";
 
 const initState: IUser = {
   id: "",

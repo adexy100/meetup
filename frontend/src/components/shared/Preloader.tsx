@@ -1,6 +1,6 @@
 import { LoadingOutlined } from "@ant-design/icons";
 import React from "react";
-import logo from "~/images/logo.svg";
+import logo from "../../images/logo.svg";
 
 const Preloader = () => (
   <div className="w-full h-screen z-9999 flex flex-col justify-center items-center animate-fade">

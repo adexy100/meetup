@@ -5,8 +5,8 @@ import {
   INITIATE_CHAT,
   MINIMIZE_CHAT,
   NEW_MESSAGE_ARRIVED,
-} from "~/constants/actionType";
-import { IChatState } from "~/types/type";
+} from "../../constants/actionType";
+import { IChatState } from "../../types/type";
 import { TChatActionType } from "../action/chatActions";
 
 const initState: IChatState = {

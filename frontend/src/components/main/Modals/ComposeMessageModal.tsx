@@ -2,9 +2,9 @@ import { CloseOutlined, FormOutlined } from "@ant-design/icons";
 import Modal from "react-modal";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { SearchInput } from "~/components/shared";
-import { initiateChat } from "~/redux/action/chatActions";
-import { IUser } from "~/types/type";
+import { SearchInput } from "../../shared";
+import { initiateChat } from "../../../redux/action/chatActions";
+import { IUser } from "../../../types/type";
 
 interface IProps {
   isOpen: boolean;

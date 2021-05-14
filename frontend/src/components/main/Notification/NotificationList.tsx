@@ -5,9 +5,9 @@ import {
 } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { Avatar } from "~/components/shared";
-import { displayTime } from "~/helpers/utils";
-import { INotification } from "~/types/type";
+import { Avatar } from "../../../components/shared";
+import { displayTime } from "../../../helpers/utils";
+import { INotification } from "../../../types/type";
 
 interface IProps {
   notifications: INotification[];

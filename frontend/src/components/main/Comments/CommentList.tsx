@@ -2,14 +2,12 @@ import { LoadingOutlined } from "@ant-design/icons";
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { useDidMount, useModal } from "~/hooks";
-import { setTargetComment } from "~/redux/action/helperActions";
-import { IComment } from "~/types/type";
+import { useDidMount, useModal } from "../../../hooks";
+import { setTargetComment } from "../../../redux/action/helperActions";
+import { IComment } from "../../../types/type";
 import CommentItem from "./CommentItem";
 
-const DeleteCommentModal = lazy(
-  () => import("~/components/main/Modals/DeleteCommentModal")
-);
+const DeleteCommentModal = lazy(() => import("../Modals/DeleteCommentModal"));
 
 interface IProps {
   comments: IComment[];

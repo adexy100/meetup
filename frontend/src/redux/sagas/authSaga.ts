@@ -5,11 +5,11 @@ import {
   LOGIN_START,
   LOGOUT_START,
   REGISTER_START,
-} from "~/constants/actionType";
-import { LOGIN } from "~/constants/routes";
+} from "../../constants/actionType";
+import { LOGIN } from "../../constants/routes";
 import { checkAuthSession, login, logout, register } from "../../services/api";
 import socket from "../../socket/socket";
-import { IError, IUser } from "~/types/type";
+import { IError, IUser } from "../../types/type";
 import {
   loginSuccess,
   logoutSuccess,

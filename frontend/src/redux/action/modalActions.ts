@@ -1,5 +1,5 @@
-import { HIDE_MODAL, SHOW_MODAL } from "~/constants/actionType";
-import { EModalType } from "~/types/type";
+import { HIDE_MODAL, SHOW_MODAL } from "../../constants/actionType";
+import { EModalType } from "../../types/type";
 
 export const showModal = (modalType: EModalType) =>
   <const>{

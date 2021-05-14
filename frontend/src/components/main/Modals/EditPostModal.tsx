@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { useDidMount } from "~/hooks";
-import { setTargetPost } from "~/redux/action/helperActions";
-import { hideModal } from "~/redux/action/modalActions";
-import { updatePost } from "~/services/api";
-import { EModalType, IError, IPost, IRootReducer } from "~/types/type";
+import { useDidMount } from "../../../hooks";
+import { setTargetPost } from "../../../redux/action/helperActions";
+import { hideModal } from "../../../redux/action/modalActions";
+import { updatePost } from "../../../services/api";
+import { EModalType, IError, IPost, IRootReducer } from "../../../types/type";
 
 interface IProps {
   onAfterOpen?: () => void;

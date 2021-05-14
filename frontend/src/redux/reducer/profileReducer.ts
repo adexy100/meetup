@@ -3,8 +3,8 @@ import {
   UPDATE_COVER_PHOTO,
   UPDATE_PROFILE_INFO,
   UPDATE_PROFILE_PICTURE,
-} from "~/constants/actionType";
-import { IProfile } from "~/types/type";
+} from "../../constants/actionType";
+import { IProfile } from "../../types/type";
 import { TProfileActionTypes } from "../action/profileActions";
 
 const initState: IProfile = {

@@ -1,5 +1,8 @@
-import { SET_TARGET_COMMENT, SET_TARGET_POST } from "~/constants/actionType";
-import { IHelperState } from "~/types/type";
+import {
+  SET_TARGET_COMMENT,
+  SET_TARGET_POST,
+} from "../../constants/actionType";
+import { IHelperState } from "../../types/type";
 import { helperActionType } from "../action/helperActions";
 
 const initState: IHelperState = {

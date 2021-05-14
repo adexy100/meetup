@@ -1,4 +1,4 @@
-import placeholder from "~/images/avatar_placeholder.png";
+import placeholder from "../../images/avatar_placeholder.png";
 
 interface IProps {
   url?: string;

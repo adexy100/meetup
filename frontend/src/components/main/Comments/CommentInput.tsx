@@ -1,7 +1,7 @@
 import React, { forwardRef, MutableRefObject, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Avatar } from "~/components/shared";
-import { IRootReducer } from "~/types/type";
+import { Avatar } from "../../shared";
+import { IRootReducer } from "../../../types/type";
 
 interface IProps {
   isLoading: boolean;

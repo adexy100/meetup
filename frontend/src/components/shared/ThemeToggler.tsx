@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setTheme } from "~/redux/action/settingsActions";
-import { IRootReducer } from "~/types/type";
+import { setTheme } from "../../redux/action/settingsActions";
+import { IRootReducer } from "../../types/type";
 
 const ThemeToggler = () => {
   const { theme } = useSelector((state: IRootReducer) => ({

@@ -1,4 +1,4 @@
-import { SET_THEME } from "~/constants/actionType";
+import { SET_THEME } from "../../constants/actionType";
 
 export const setTheme = (theme: "light" | "dark") =>
   <const>{

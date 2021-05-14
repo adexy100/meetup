@@ -3,15 +3,15 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Avatar } from "~/components/shared";
-import { useDidMount } from "~/hooks";
+import { Avatar } from "../../shared";
+import { useDidMount } from "../../../hooks";
 import {
   getCommentReplies,
   likeComment,
   replyOnComment,
   updateComment,
-} from "~/services/api";
-import { IComment, IError } from "~/types/type";
+} from "../../../services/api";
+import { IComment, IError } from "../../../types/type";
 import { CommentOptions } from "../Options";
 import CommentInput from "./CommentInput";
 import CommentList from "./CommentList";

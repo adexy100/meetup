@@ -8,7 +8,7 @@ import {
   IProfile,
   IRegister,
   IUser,
-} from "~/types/type";
+} from "../types/type";
 import httpRequest from "./fetcher";
 
 export const login = (username: string, password: string) =>

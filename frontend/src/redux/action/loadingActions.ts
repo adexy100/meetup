@@ -3,7 +3,7 @@ import {
   SET_CREATE_POST_LOADING,
   SET_GET_FEED_LOADING,
   SET_GET_USER_LOADING,
-} from "~/constants/actionType";
+} from "../../constants/actionType";
 
 export const isAuthenticating = (bool: boolean = true) =>
   <const>{

@@ -11,11 +11,11 @@ import {
 } from "@ant-design/icons";
 import { useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { Messages, Notification } from "~/components/main";
-import { Avatar, SearchInput, ThemeToggler } from "~/components/shared";
-import { LOGIN, REGISTER, SUGGESTED_PEOPLE } from "~/constants/routes";
-import logo from "~/images/logo.svg";
-import { IUser } from "~/types/type";
+import { Messages, Notification } from "../main";
+import { Avatar, SearchInput, ThemeToggler } from "../shared";
+import { LOGIN, REGISTER, SUGGESTED_PEOPLE } from "../../constants/routes";
+import logo from "../../images/logo.svg";
+import { IUser } from "../../types/type";
 
 interface IProps {
   isAuth: boolean;

@@ -1,6 +1,6 @@
 import { LoadingOutlined } from "@ant-design/icons";
 import { lazy, Suspense } from "react";
-import { IPost } from "~/types/type";
+import { IPost } from "../../../types/type";
 
 const EditPostModal = lazy(() => import("./EditPostModal"));
 const PostLikesModal = lazy(() => import("./PostLikesModal"));

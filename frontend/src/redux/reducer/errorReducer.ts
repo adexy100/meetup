@@ -3,8 +3,8 @@ import {
   SET_AUTH_ERR_MSG,
   SET_NEWSFEED_ERR_MSG,
   SET_PROFILE_ERR_MSG,
-} from "~/constants/actionType";
-import { IErrorState } from "~/types/type";
+} from "../../constants/actionType";
+import { IErrorState } from "../../types/type";
 import { ErrorActionType } from "../action/errorActions";
 
 const initState: IErrorState = {

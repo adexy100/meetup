@@ -1,6 +1,6 @@
 import { CloseOutlined } from "@ant-design/icons";
 import Modal from "react-modal";
-import { IError } from "~/types/type";
+import { IError } from "../../../types/type";
 
 interface IProps {
   isOpen: boolean;

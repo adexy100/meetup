@@ -3,13 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ComposeMessageModal } from "~/components/main";
-import { Badge, Loader } from "~/components/shared";
-import { useModal } from "~/hooks";
-import { initiateChat } from "~/redux/action/chatActions";
-import { getMessages, getUnreadMessages, readMessage } from "~/services/api";
-import socket from "~/socket/socket";
-import { IError, IMessage, IRootReducer, IUser } from "~/types/type";
+import { ComposeMessageModal } from "../../main";
+import { Badge, Loader } from "../../shared";
+import { useModal } from "../../../hooks";
+import { initiateChat } from "../../../redux/action/chatActions";
+import { getMessages, getUnreadMessages, readMessage } from "../../../services/api";
+import socket from "../../../socket/socket";
+import { IError, IMessage, IRootReducer, IUser } from "../../../types/type";
 import MessagesList from "./MessagesList";
 
 const Messages: React.FC<{ isAuth: boolean }> = ({ isAuth }) => {

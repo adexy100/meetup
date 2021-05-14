@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { IRootReducer } from "~/types/type";
+import { IRootReducer } from "../../types/type";
 
 interface IInjectedProps {
   theme: string;

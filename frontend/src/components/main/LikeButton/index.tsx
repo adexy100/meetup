@@ -1,7 +1,7 @@
 import { LikeOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import { useDidMount } from "~/hooks";
-import { likePost } from "~/services/api";
+import { useDidMount } from "../../../hooks";
+import { likePost } from "../../../services/api";
 
 interface IProps {
   postID: string;

@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import Avatar from "~/components/shared/Avatar";
-import { initiateChat } from "~/redux/action/chatActions";
-import { IChatItemsState } from "~/types/type";
+import Avatar from "../../shared/Avatar";
+import { initiateChat } from "../../../redux/action/chatActions";
+import { IChatItemsState } from "../../../types/type";
 
 interface IProps {
   users: IChatItemsState[];

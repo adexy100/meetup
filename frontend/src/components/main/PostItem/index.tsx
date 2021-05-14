@@ -10,16 +10,16 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { lazy, Suspense, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import withAuth from "~/components/hoc/withAuth";
-import { LikeButton, PostOptions } from "~/components/main";
-import { Avatar, ImageGrid } from "~/components/shared";
-import { LOGIN } from "~/constants/routes";
-import { useModal } from "~/hooks";
-import { setTargetPost } from "~/redux/action/helperActions";
-import { showModal } from "~/redux/action/modalActions";
-import { EModalType, IPost } from "~/types/type";
+import withAuth from "../../hoc/withAuth";
+import { LikeButton, PostOptions } from "../../main";
+import { Avatar, ImageGrid } from "../../shared";
+import { LOGIN } from "../../../constants/routes";
+import { useModal } from "../../../hooks";
+import { setTargetPost } from "../../../redux/action/helperActions";
+import { showModal } from "../../../redux/action/modalActions";
+import { EModalType, IPost } from "../../../types/type";
 
-const Comments = lazy(() => import("~/components/main/Comments"));
+const Comments = lazy(() => import("../Comments"));
 
 dayjs.extend(relativeTime);
 

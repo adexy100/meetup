@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { IFileHandler, IImage } from "~/types/type";
+import { IFileHandler, IImage } from "../types/type";
 
 const useFileHandler = <T extends unknown>(
   type = "multiple",

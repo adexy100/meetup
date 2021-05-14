@@ -2,12 +2,12 @@ import { CloseOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
-import { Loader } from "~/components/shared";
-import { useDidMount } from "~/hooks";
-import { setTargetPost } from "~/redux/action/helperActions";
-import { hideModal } from "~/redux/action/modalActions";
-import { getPostLikes } from "~/services/api";
-import { EModalType, IError, IProfile, IRootReducer } from "~/types/type";
+import { Loader } from "../../shared";
+import { useDidMount } from "../../../hooks";
+import { setTargetPost } from "../../../redux/action/helperActions";
+import { hideModal } from "../../../redux/action/modalActions";
+import { getPostLikes } from "../../../services/api";
+import { EModalType, IError, IProfile, IRootReducer } from "../../../types/type";
 import UserCard from "../UserCard";
 
 interface IProps {

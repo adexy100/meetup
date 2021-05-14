@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { logoutStart } from "~/redux/action/authActions";
-import store from "~/redux/store/store";
+import { logoutStart } from "../redux/action/authActions";
+import store from "../redux/store/store";
 
 const foodieUrl = process.env.REACT_APP_MEETUP_URL || "http://localhost:9000";
 const foodieApiVersion = process.env.REACT_APP_MEETUP_API_VERSION || "v1";

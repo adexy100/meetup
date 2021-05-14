@@ -1,5 +1,8 @@
-import { SET_TARGET_COMMENT, SET_TARGET_POST } from "~/constants/actionType";
-import { IComment, IPost } from "~/types/type";
+import {
+  SET_TARGET_COMMENT,
+  SET_TARGET_POST,
+} from "../../constants/actionType";
+import { IComment, IPost } from "../../types/type";
 
 export const setTargetComment = (comment: IComment | null) =>
   <const>{

@@ -1,5 +1,5 @@
-import { HIDE_MODAL, SHOW_MODAL } from "~/constants/actionType";
-import { EModalType, IModalState } from "~/types/type";
+import { HIDE_MODAL, SHOW_MODAL } from "../../constants/actionType";
+import { EModalType, IModalState } from "../../types/type";
 import { modalActionType } from "../action/modalActions";
 
 const initState: IModalState = {

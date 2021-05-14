@@ -1,7 +1,7 @@
 import { call, put } from "redux-saga/effects";
-import { GET_USER_START } from "~/constants/actionType";
+import { GET_USER_START } from "../../constants/actionType";
 import { getUser } from "../../services/api";
-import { IProfile } from "~/types/type";
+import { IProfile } from "../../types/type";
 import { setProfileErrorMessage } from "../action/errorActions";
 import { isGettingUser } from "../action/loadingActions";
 import { getUserSuccess } from "../action/profileActions";

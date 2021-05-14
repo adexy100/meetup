@@ -8,10 +8,10 @@ import {
 } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { BookmarkButton } from "~/components/main";
-import { setTargetPost } from "~/redux/action/helperActions";
-import { showModal } from "~/redux/action/modalActions";
-import { EModalType, IPost } from "~/types/type";
+import { BookmarkButton } from "../../main";
+import { setTargetPost } from "../../../redux/action/helperActions";
+import { showModal } from "../../../redux/action/modalActions";
+import { EModalType, IPost } from "../../../types/type";
 
 interface IProps {
   openDeleteModal: () => void;

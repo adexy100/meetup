@@ -3,9 +3,9 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { setTargetComment } from "~/redux/action/helperActions";
-import { deleteComment } from "~/services/api";
-import { IComment, IError, IRootReducer } from "~/types/type";
+import { setTargetComment } from "../../../redux/action/helperActions";
+import { deleteComment } from "../../../services/api";
+import { IComment, IError, IRootReducer } from "../../../types/type";
 
 interface IProps {
   onAfterOpen?: () => void;

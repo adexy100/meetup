@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FollowButton } from "~/components/main";
-import { Avatar, UserLoader } from "~/components/shared";
-import { SUGGESTED_PEOPLE } from "~/constants/routes";
-import { getSuggestedPeople } from "~/services/api";
-import { IError, IProfile } from "~/types/type";
+import { FollowButton } from "../../main";
+import { Avatar, UserLoader } from "../../shared";
+import { SUGGESTED_PEOPLE } from "../../../constants/routes";
+import { getSuggestedPeople } from "../../../services/api";
+import { IError, IProfile } from "../../../types/type";
 
 const SuggestedPeople: React.FC = () => {
   const [people, setPeople] = useState<IProfile[]>([]);

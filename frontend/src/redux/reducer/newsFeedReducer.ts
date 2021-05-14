@@ -6,8 +6,8 @@ import {
   HAS_NEW_FEED,
   UPDATE_FEED_POST,
   UPDATE_POST_LIKES,
-} from "~/constants/actionType";
-import { INewsFeed, IPost } from "~/types/type";
+} from "../../constants/actionType";
+import { INewsFeed, IPost } from "../../types/type";
 import { TNewsFeedActionType } from "../action/feedActions";
 
 const initState: INewsFeed = {

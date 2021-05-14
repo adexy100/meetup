@@ -5,8 +5,8 @@ import {
   INITIATE_CHAT,
   MINIMIZE_CHAT,
   NEW_MESSAGE_ARRIVED,
-} from "~/constants/actionType";
-import { IMessage, IUser, PartialBy } from "~/types/type";
+} from "../../constants/actionType";
+import { IMessage, IUser, PartialBy } from "../../types/type";
 
 export const initiateChat = (user: PartialBy<IUser, "fullname">) =>
   <const>{

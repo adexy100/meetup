@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ImageLightbox } from "~/components/main";
-import { useModal } from "~/hooks";
+import { ImageLightbox } from "../main";
+import { useModal } from "../../hooks";
 
 interface IProps {
   images: string[];

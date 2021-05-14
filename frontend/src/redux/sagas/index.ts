@@ -7,7 +7,7 @@ import {
   LOGIN_START,
   LOGOUT_START,
   REGISTER_START,
-} from "~/constants/actionType";
+} from "../../constants/actionType";
 import authSaga from "./authSaga";
 import newsFeedSaga from "./newsFeedSaga";
 import profileSaga from "./profileSaga";

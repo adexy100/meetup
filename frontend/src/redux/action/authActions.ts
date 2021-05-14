@@ -7,8 +7,8 @@ import {
   REGISTER_START,
   REGISTER_SUCCESS,
   UPDATE_AUTH_PICTURE,
-} from "~/constants/actionType";
-import { IRegister, IUser } from "~/types/type";
+} from "../../constants/actionType";
+import { IRegister, IUser } from "../../types/type";
 
 export const loginStart = (email: string, password: string) =>
   <const>{

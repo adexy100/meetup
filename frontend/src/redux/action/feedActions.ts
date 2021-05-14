@@ -8,8 +8,8 @@ import {
   HAS_NEW_FEED,
   UPDATE_FEED_POST,
   UPDATE_POST_LIKES,
-} from "~/constants/actionType";
-import { IFetchParams, IPost } from "~/types/type";
+} from "../../constants/actionType";
+import { IFetchParams, IPost } from "../../types/type";
 
 export const getNewsFeedStart = (options?: IFetchParams) =>
   <const>{

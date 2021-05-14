@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useDidMount } from "~/hooks";
-import { bookmarkPost } from "~/services/api";
+import { useDidMount } from "../../../hooks";
+import { bookmarkPost } from "../../../services/api";
 
 interface IProps {
   postID: string;

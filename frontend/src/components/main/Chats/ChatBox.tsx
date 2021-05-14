@@ -8,18 +8,18 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { Avatar, Loader } from "~/components/shared";
-import { displayTime } from "~/helpers/utils";
-import { useDidMount } from "~/hooks";
+import { Avatar, Loader } from "../../shared";
+import { displayTime } from "../../../helpers/utils";
+import { useDidMount } from "../../../hooks";
 import {
   closeChat,
   getMessagesSuccess,
   minimizeChat,
   newMessageArrived,
-} from "~/redux/action/chatActions";
-import { getUserMessages, sendMessage } from "~/services/api";
-import socket from "~/socket/socket";
-import { IChatItemsState, IError, IMessage, IUser } from "~/types/type";
+} from "../../../redux/action/chatActions";
+import { getUserMessages, sendMessage } from "../../../services/api";
+import socket from "../../../socket/socket";
+import { IChatItemsState, IError, IMessage, IUser } from "../../../types/type";
 
 interface IProps {
   target: IChatItemsState;

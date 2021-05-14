@@ -1,5 +1,5 @@
-import { SET_THEME } from "~/constants/actionType";
-import { ISettingsState } from "~/types/type";
+import { SET_THEME } from "../../constants/actionType";
+import { ISettingsState } from "../../types/type";
 import { TSettingsActionType } from "../action/settingsActions";
 
 const initState: ISettingsState = {

@@ -2,9 +2,9 @@ import { SearchOutlined } from "@ant-design/icons";
 import debounce from "lodash.debounce";
 import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Avatar, Loader } from "~/components/shared";
-import { search } from "~/services/api";
-import { IError, IProfile, IUser } from "~/types/type";
+import { Avatar, Loader } from "../shared";
+import { search } from "../../services/api";
+import { IError, IProfile, IUser } from "../../types/type";
 
 interface IProps {
   floatingResult?: boolean;

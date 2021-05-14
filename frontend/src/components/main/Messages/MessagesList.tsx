@@ -1,7 +1,7 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import Avatar from "~/components/shared/Avatar";
-import { displayTime } from "~/helpers/utils";
-import { IMessage, IUser } from "~/types/type";
+import Avatar from "../../shared/Avatar";
+import { displayTime } from "../../../helpers/utils";
+import { IMessage, IUser } from "../../../types/type";
 
 interface IProps {
   messages: IMessage[];

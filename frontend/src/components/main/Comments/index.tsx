@@ -2,11 +2,11 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Boundary, Loader } from "~/components/shared";
-import { useDidMount } from "~/hooks";
-import { setTargetComment } from "~/redux/action/helperActions";
-import { commentOnPost, getComments } from "~/services/api";
-import { IComment, IFetchParams } from "~/types/type";
+import { Boundary, Loader } from "../../shared";
+import { useDidMount } from "../../../hooks";
+import { setTargetComment } from "../../../redux/action/helperActions";
+import { commentOnPost, getComments } from "../../../services/api";
+import { IComment, IFetchParams } from "../../../types/type";
 import CommentInput from "./CommentInput";
 import CommentList from "./CommentList";
 

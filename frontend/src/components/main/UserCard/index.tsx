@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { FollowButton } from "~/components/main";
-import { Avatar } from "~/components/shared";
-import { IProfile, IRootReducer, IUser } from "~/types/type";
+import { FollowButton } from "../../main";
+import { Avatar } from "../../shared";
+import { IProfile, IRootReducer, IUser } from "../../../types/type";
 
 interface IProps {
   profile: IProfile | IUser;

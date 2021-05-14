@@ -5,8 +5,8 @@ import {
 } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setTargetComment } from "~/redux/action/helperActions";
-import { IComment } from "~/types/type";
+import { setTargetComment } from "../../../redux/action/helperActions";
+import { IComment } from "../../../types/type";
 
 interface IProps {
   comment: IComment;

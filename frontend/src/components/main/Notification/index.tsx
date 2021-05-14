@@ -2,15 +2,15 @@ import { BellOutlined } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useSelector } from "react-redux";
-import { Badge, Loader } from "~/components/shared";
+import { Badge, Loader } from "../../shared";
 import {
   getNotifications,
   getUnreadNotifications,
   markAllAsUnreadNotifications,
   readNotification,
-} from "~/services/api";
-import socket from "~/socket/socket";
-import { IError, INotification, IRootReducer } from "~/types/type";
+} from "../../../services/api";
+import socket from "../../../socket/socket";
+import { IError, INotification, IRootReducer } from "../../../types/type";
 import NotificationList from "./NotificationList";
 
 interface IProps {

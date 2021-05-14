@@ -1,14 +1,14 @@
 import { lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { withAuth, withTheme } from "~/components/hoc";
-import { LogoutModal, Messages, Notification } from "~/components/main";
-import { Avatar, SearchInput, ThemeToggler } from "~/components/shared";
-import { LOGIN, REGISTER } from "~/constants/routes";
-import { useModal } from "~/hooks";
-import logo from "~/images/logo.svg";
-import { logoutStart } from "~/redux/action/authActions";
-import { IRootReducer } from "~/types/type";
+import { withAuth, withTheme } from "../hoc";
+import { LogoutModal, Messages, Notification } from "../main";
+import { Avatar, SearchInput, ThemeToggler } from "../shared";
+import { LOGIN, REGISTER } from "../../constants/routes";
+import { useModal } from "../../hooks";
+import logo from "../../images/logo.svg";
+import { logoutStart } from "../../redux/action/authActions";
+import { IRootReducer } from "../../types/type";
 
 const NavBarMobile = lazy(() => import("./NavBarMobile"));
 
