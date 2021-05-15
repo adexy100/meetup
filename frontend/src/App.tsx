@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Route, Router, Switch } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Chats } from "~/components/main";
+import { Chats } from "./components/main";
 import { NavBar, Preloader } from "./components/shared";
 import * as ROUTE from "./constants/routes";
 import * as pages from "./pages";
@@ -63,15 +63,15 @@ function App() {
         <Switch>
           <PublicRoute path={ROUTE.REGISTER} component={pages.Register} />
           <PublicRoute path={ROUTE.LOGIN} component={pages.Login} />
-          {/* <ProtectedRoute path={ROUTE.SEARCH} component={pages.Search} /> */}
+          <ProtectedRoute path={ROUTE.SEARCH} component={pages.Search} />
           <Route
             path={ROUTE.HOME}
             exact
             render={(props: any) => <pages.Home key={Date.now()} {...props} />}
           />
-          {/* <ProtectedRoute path={ROUTE.POST} component={pages.Post} />
+          <ProtectedRoute path={ROUTE.POST} component={pages.Post} />
           <ProtectedRoute path={ROUTE.PROFILE} component={pages.Profile} />
-          <ProtectedRoute path={ROUTE.CHAT} component={pages.Chat} /> */}
+          <ProtectedRoute path={ROUTE.CHAT} component={pages.Chat} />
           <ProtectedRoute
             path={ROUTE.SUGGESTED_PEOPLE}
             component={pages.SuggestedPeople}
@@ -80,9 +80,9 @@ function App() {
             path={ROUTE.SOCIAL_AUTH_FAILED}
             component={pages.SocialAuthFailed}
           />
-          {/* <Route component={pages.PageNotFound} /> */}
+          <Route component={pages.PageNotFound} />
         </Switch>
-        {/* {isNotMobile && <Chats />} */}
+        {isNotMobile && <Chats />}
       </main>
     </Router>
   );

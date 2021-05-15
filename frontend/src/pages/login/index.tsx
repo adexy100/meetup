@@ -65,7 +65,7 @@ const Login: React.FC = () => {
       >
         {/* --- LOGO --- */}
         <Link className="absolute left-8 top-8" to="/">
-          <img src={logo} alt="Foodie Logo" className="w-24" />
+          <img src={logo} alt="Devmeet Logo" className="w-24" />
         </Link>
         {/* -- INFO --- */}
         <h3 className="animate-fade text-white w-9/12 mb-14">
@@ -85,7 +85,7 @@ const Login: React.FC = () => {
         <Link to="/">
           <img
             src={logo_dark}
-            alt="Foodie Logo"
+            alt="Devmeet Logo"
             className="w-24 relative mx-auto laptop:hidden"
           />
         </Link>
