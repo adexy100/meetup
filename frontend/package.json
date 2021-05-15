@@ -47,13 +47,9 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "build:css": "postcss src/styles/base/base.css -o src/styles/app.css",
-    "watch:css": "postcss src/styles/base/base.css -o src/styles/app.css --watch",
-    "react-scripts:start": "react-scripts start",
-    "react-scripts:dist": "react-scripts build",
-    "start": "run-p watch:css react-scripts:start",
-    "build": "run-s build:css react-scripts:dist",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -75,6 +71,7 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^6.1.2",
     "@neojp/tailwindcss-important-variant": "^1.0.1",
     "@tailwindcss/custom-forms": "^0.2.1",
     "@tailwindcss/jit": "^0.1.18",
@@ -87,7 +84,7 @@
     "postcss": "^8.2.15",
     "postcss-cli": "^8.3.1",
     "postcss-extend": "^1.0.5",
-    "postcss-import": "^14.0.2",
+    "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-nested": "^4.2.3",
     "react-app-rewire-alias": "^1.0.3",
